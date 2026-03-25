@@ -8,7 +8,7 @@
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=4.0.1
+ARG RUBY_VERSION=3.4.1
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
@@ -47,6 +47,9 @@ RUN bundle install && \
 # Copy application code
 COPY . .
 
+# Ensure app scripts are executable inside the image even if Git/host permissions were altered.
+RUN chmod +x bin/*
+
 # Precompile bootsnap code for faster boot times.
 # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
 RUN bundle exec bootsnap precompile -j 1 app/ lib/
@@ -75,3 +78,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
+
