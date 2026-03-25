@@ -9,19 +9,25 @@
  * Consider organizing styles into separate files for maintainability.
  */
 body {
-  margin: 0;
-  height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    height: 100vh;
 
-  background-color: #ffffff;
-  font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #2f4e6c;
+    font-family: Arial, sans-serif;
 }
-
 .titulo {
-  font-size: 32px;
-  font-weight: 300;
-  color: #222;
+    font-size: 40px;
+    font-weight: 300;
+    color: #222;
+}.cuadro {
+    background-color: #e1dddde3;
+    padding: 40px 60px;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    text-align: center;
 }
